@@ -1,42 +1,41 @@
-﻿#include "Header.h"
+#include "Header.h"
+
 int main()
 {
 	setlocale(0, "ru");
 
+	const int N = 10;
+
 	//создание массива////////////////////
-	int rows;
-	cout << "Введите n(количество строк(столбцов)): ";
+	double arr[N][N];
+
+	//ввод размерности массива////////////////////
+	int n;
+	cout << "Введите n (количество строк(столбцов)): ";
 	while (true)
 	{
-		rows = getnum();
-		if (rows<=0)
+		n = getnum();
+		if (n <= 0)
 			cout << "Количество строк (столбцов) должно быть больше 0. Повторите ввод." << endl;
 		else
 			break;
 	}
 
-	double** arr = new double* [rows];
-	for (int i = 0; i < rows; i++)
-		arr[i] = new double[rows];
-
-
 	//заполнение массива//////////////////
-	arr = fillmass(arr, rows);
+	fill_array(arr, n);
+
 	//вывод изначальной////////////////////////////////////
-	cout << "Было: " << endl;
-	showmassive(arr, rows);
+	cout << endl << "Было:" << endl;
+	show_array(arr, n);
 
 	//изменение по варианту///////////////
-	arr = changemass(arr, rows);
+	change_array(arr, n);
 
 	//вывод изменённой////////////////////////////////////
-	cout << "Стало: " << endl;
-	showmassive(arr, rows);
+	cout << endl << "Стало:" << endl;
+	show_array(arr, n);
 
-	//чистка памяти///////////////////////
-	for (int i = 0; i < rows; i++)
-		delete [] arr[i];
-	delete[] arr;
+	cout << endl;
 	system("pause");
 	return 0;
 }
